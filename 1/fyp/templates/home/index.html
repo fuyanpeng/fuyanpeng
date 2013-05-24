@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <link href="{{ STATIC_URL }}css/home/index.css" rel="stylesheet" type="text/css" media="screen">
+{% endblock %}
+
+
+{% block sidebar %}
+<iframe width="300" height="750" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=300&height=750&fansRow=2&ptype=1&speed=0&skin=7&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2136962713&verifier=d9191102&dpc=1"></iframe>
+{% endblock %}
+
+{% block content %}
+    <div style="margin-top:300px; margin-left:150px;">
+        首页正在完善中，移步到
+        <h2><a href="{% url blog_home %}">博客</a></h2>
+    </div>
+{% endblock %}
+
+{% block bottom %}
+<div class="friendlink">
+<span class="link-title">友情链接</span>
+    <div class="link-content">
+    {% for link in links %}
+        <span><a target="_blank" href="{{ link.url }}">{{ link.name }}</a></span>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

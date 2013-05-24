@@ -1,0 +1,44 @@
+{% load truncate %}
+<ul>
+    <li id="search" style="background: none;">
+        <form id="searchform" method="get" action="{% url blog_home %}">
+            <div>
+                <input type="text" name="s" id="s" size="15" />
+                <br />
+                <input type="submit" value="搜索" />
+            </div>
+        </form>
+    </li>
+    <li id="categories">
+        <h2 style="font-size:21px; color:#555555;">博文分类</h2>
+        <ul>
+            {% for category in categories %}
+            <li>
+                <a href="{% url blog_home %}?category={{category.slug}}">{{ category.name }}</a>
+                ({{ category.get_entry_count }}) 
+            </li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li>
+        <h2 style="font-size:21px; color:#555555">大家正在说...</h2>
+        <ul>
+            {% for comment in newcomments %}
+            <li style="font-size:12px; line-height:20px;"><a href="{{ comment.entry.get_absolute_url }}#comment_list">
+                {{ comment.content|truncatesmart:13 }}&nbsp; 
+                <span style="float:right;">({{ comment.get_nickname|truncatesmart:2 }})</span>
+            </a></li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li>
+        <h2>标签云</h2>
+        <div style="padding: 0px 30px 30px 30px; ">
+        {% for tag in tags %}
+        <a href="{% url blog_home %}?tag={{ tag.id }}" style="color:{{tag.color}}; font-size:{{tag.size}}">
+            {{tag.name}}
+        </a>
+        {% endfor %}
+        </div>
+    </li>
+</ul>

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% load pagination_tags %}
+
+{% block css %}
+    <link href="{{ STATIC_URL }}css/board/board.css" rel="stylesheet" type="text/css" media="screen" />
+{% endblock %}
+
+{% block content %}
+
+<div class="board-form">
+    <form action="" method="post">
+    {% csrf_token %}
+    <div class="control-group">
+        <label class="control-label">姓名(<span style="color:red;">*</span>):</label>
+        <span class="controls">
+            {{ form.name }}
+        </span>
+        {% if form.name.errors %}
+        <div class="errlist">
+            {% for error in form.name.errors %}
+                <span>*{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="control-group">
+        <label class="control-label">邮  &nbsp; &nbsp;箱:</label>
+        <span class="controls">
+            {{ form.email }}
+        </span>
+        {% if form.email.errors %}
+        <div class="errlist">
+            {% for error in form.email.errors %}
+                <span>*{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" style="line-height:140px;">留言(<span style="color:red;">*</span>):</label>
+        <span class="controls">
+            {{ form.content }}
+        </span>
+        {% if form.content.errors %}
+        <div class="errlist">
+            {% for error in form.content.errors %}
+                <span>*{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+        <input class="submit" type="submit" value="提  交">
+    </form>
+</div>
+
+<div class="board-list">
+    {% autopaginate messages 10 %}
+    {% for msg in messages %}
+    <div class="message">
+        <div class="message-header">
+            <span>{{ msg.created_at|date:"Y-m-d H:i" }}</span>
+            <span>({{ msg.name }})</span>
+        </div>
+
+        <div class="message-body">
+            <div class="message-content">
+            {{ msg.content }}
+            </div>
+            {% if msg.reply %}
+            <div class="message-reply">
+                <span style="color: #006699; font-weight: bold"> [站长回复]&nbsp;&nbsp; </span>
+                {{ msg.reply }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    {% paginate using "includes/pagination.html" %}
+</div>
+
+{% endblock %}

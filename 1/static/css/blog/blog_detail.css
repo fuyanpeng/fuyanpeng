@@ -1,0 +1,75 @@
+pre {
+    background: none repeat scroll 0 0 #E0FFB0;
+    border-color: #94DA31;
+    border-style: solid;
+    border-width: 1px 0;
+    line-height: 1.3em;
+    padding: 0.3em 0.4em;
+    white-space: pre;
+}
+
+#content {
+    font-size: 13px;
+    line-height: 1.62;
+    margin-right: 340px;
+}
+
+.tabs {
+    border-bottom: 1px solid #E6E6E6;
+    margin: 20px 0 10px;
+    padding-bottom: 10px;
+}
+
+a.comment_tabs {
+    background: none repeat scroll 0 0 #DECB86;
+    border-radius: 3px 3px 3px 3px;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding: 1px 5px;
+}
+
+.comments {
+    margin-bottom: 10px;
+}
+
+.comments div {
+    background: none repeat scroll 0 0 #E8E6B4;
+    color: #666666;
+    padding: 2px 10px;
+}
+
+.comment_form {
+    margin-top: 45px;
+}
+
+.comment_form input.nickname {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    font-size:14px;
+    height: 16px;
+    width 150px;
+    padding: 5px;
+}
+
+.comment_form .content {
+    width: 100%;
+    height: 100px;
+    border: 1px solid #CCCCCC;
+    margin-top: 5px;
+    resize: none;
+}
+
+.comment_form input.submit {
+    background: none repeat scroll 0 0 #DECC86;
+    float: right;
+    width: 65px;
+    padding: 3px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.nextorprev ul {
+    list-style: none outside none; 
+    margin-top: 40px;
+    padding-left: 0px
+}

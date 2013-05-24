@@ -1,0 +1,93 @@
+.control-group{
+    margin-top: 10px;
+}
+
+.control-group label{
+    float: left;
+    margin-right: 15px;
+    padding: 5px 0;
+}
+
+.board-form {
+    margin-top: 80px;
+}
+
+.board-form input.textinput {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    font-size:14px;
+    height: 16px;
+    width 150px;
+    padding: 5px;
+}
+
+.board-form input.submit {
+    background: none repeat scroll #369CDE;
+    width: 80px;
+    float: right;
+    margin-right: 30px;
+    color: #FFFFFF;
+    font-size: 16px;
+    border-radius: 3px 3px 3px 3px;
+    border: 0px;
+}
+
+.board-form TextArea.content {
+    border: 1px solid #CCCCCC;
+    width: 585px;
+    height: 150px;
+    margin-bottom: 15px;
+    border-radius: 3px 3px 3px 3px;
+    resize: none;
+}
+
+.board-list {
+    margin-top: 45px;
+}
+
+.message {
+    margin-top: 15px;
+}
+
+.message .message-header {
+    background: none repeat scroll 0 0 #F2DF9A;
+    border-radius: 3px 3px 3px 3px;
+    font-weight: bold;
+    font-size: 14px;
+    padding : 5px 10px;
+    margin-right: 30px;
+}
+
+.message .message-body{
+    margin-top: 5px;
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid #CCCCCC;
+    margin-right:30px;
+}
+
+.message .message-content {
+    font-size: 13px;
+    padding: 15px 10px;
+}
+
+.message .message-reply{
+    font-size: 13px;
+    font-style: oblique;
+    padding: 10px 40px;
+}
+
+.pagination {
+    float: right;
+    font-size: 15px;
+    backgroud-color: #F8F8DD;
+    margin-right:30px;
+    margin-top: 20px;
+}
+
+.errlist {
+    clear: left;
+    margin-left: 65px;
+    font-size: 12px;
+    color: red;
+}

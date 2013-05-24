@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load pagination_tags %}
+
+{% block sidebar %}
+    {% include "includes/sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+    {% autopaginate entries 8 %}
+    {% for entry in entries %}
+        <div class="post">
+            <div class="title">
+                <h2>{{ entry.title }}</h2>
+                <p>
+                  <small>
+                    阅读({{ entry.click_count }}) &nbsp;&nbsp;&nbsp;
+                    时间:{{ entry.created_at|date:"Y-m-d H:i" }} &nbsp;&nbsp;&nbsp;
+                    作者:{{ entry.get_username }}            
+                  </small>
+                </p>
+                <p>标签:
+                {% for tag in entry.get_tags %}
+                    <small {% if tag.id == highlight %}style="color:red;"{% endif %}>{{ tag.name }}</small>,
+                {% empty %}
+                    无
+                {% endfor %}
+                </p>
+            </div>
+            <div class="entry">
+                {{ entry.get_summary|safe }}
+            </div>
+            <p class="links"> 
+                <a href="{% url blog_detail entry.id entry.slug %}" class="more">阅读全文</a> 
+                <!--<a href="#" class="comments">No Comments</a> -->
+            </p>
+        </div>
+    {% empty %}
+        <div style="padding:60px 10px; font-size: 18px;">
+            <p>对不起，没有找到相关博文...</p>
+        </div>
+    {% endfor %}
+    {% paginate using "includes/pagination.html" %}
+{% endblock %}

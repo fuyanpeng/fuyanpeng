@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blog/blog_detail.css" type="text/css" meida="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blog/shCore.css" type="text/css" meida="screen" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/blog/shThemeDefault.css" type="text/css" meida="screen" />
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shCore.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushBash.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushCpp.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushCSharp.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushCss.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushJava.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushJScript.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushPhp.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushPython.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushRuby.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushSql.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushVb.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shbrush/shBrushXml.js"></script>
+    <script type="text/javascript">
+        SyntaxHighlighter.config.clipboardSwf = '{{ STATIC_URL }}js/shbrush/clipboard.swf';
+        SyntaxHighlighter.all();
+    </script>
+{% endblock %}
+
+
+{% block sidebar %}
+    {% include "includes/sidebar.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="title">
+        <h2 style="text-align:center">{{ entry.title }}</h2>
+        <div style="margin-top:25px;">
+           时间:{{ entry.created_at|date:"Y-m-d H:i" }}
+           作者:{{ entry.get_username}}
+        </div>
+        {% if entry.get_tags %}
+            <div>标签:
+            {% for tag in entry.get_tags %}
+                <a href="{% url blog_home %}?tag={{tag.id}}">{{ tag.name }}</a>,
+            {% empty %}
+                无
+            {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div>
+        {{ entry.text|safe }}
+    </div>
+    
+    <div class="tabs">
+        <a id="comment_list" href="#comment" class="comment_tabs">评论</a>
+    </div>
+
+    <div class="comments">
+        {% for comment in comments %}
+        <div>
+            {{ comment.created_at|date:"Y-m-d H:i" }}
+            ({{ comment.get_nickname }})
+            <span style="float: right">{{ comment.floor }}楼</span>
+        </div>
+        <p>{{ comment.content }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="comment_form">
+        <form id="comment" action="." method="post">
+        {% csrf_token %}
+            <label>昵称：{{ form.nickname }}</label>
+            <div>{{ form.content }}</div>
+            <input class="submit" type="submit" value="评论" />
+        </form>
+    </div>
+
+    <div class="nextorprev">
+    <ul style="list-style:none outside none; margin-top:60px;">
+        <li>
+            {% if prev_blog %}
+            上一篇:<a href={% url blog_detail prev_blog.id prev_blog.slug %}>{{ prev_blog.title }}</a>
+            {% else %}
+            上一篇:<span>没有了</span>
+            {% endif %}
+        </li>
+        <li>
+            {% if next_blog %}
+            下一篇:<a href={% url blog_detail next_blog.id next_blog.slug %}>{{ next_blog.title }}</a>
+            {% else %}
+            下一篇:<span>没有了</span>
+            {% endif %}
+        </li>
+    </ul>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,12 @@
+<script type="text/javascript">
+KindEditor.ready(function(K) {
+    var options = {
+        cssPath : ('{{ STATIC_URL }}editor/kindeditor-4.1.2/themes/default/default.css',
+                    '{{ STATIC_URL }}editor/kindeditor-4.1.2//plugins/code/prettify.css'),
+		uploadJson: '{{ UPLOAD_JSON }}',
+		width: {{ width }},
+		height: {{ height }}
+    };
+    var editor = K.create('textarea[name="{{name}}"]', options);
+});
+</script>

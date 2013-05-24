@@ -1,0 +1,28 @@
+#content {
+    min-height: 550px;
+    _height: 700px;
+}
+
+.friendlink {
+    border: 1px solid #DDDDDD;
+    padding: 10px 20px;
+
+}
+
+span.link-title {
+    background: url("../../images/home/linked.jpg") no-repeat scroll 0 0 transparent;
+    font-size: 19px;
+    padding-left: 35px;
+    position: relative;
+    top: -22px;
+
+}
+
+.link-content {
+    margin-top: -5px;
+}
+
+.link-content span {
+    padding: 0 8px;
+    line-height: 22px;
+}
